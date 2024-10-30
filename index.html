@@ -11,9 +11,33 @@
     <script type="module" src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="scores-container"></div>
-        <div class="game-container"></div>
-    </div>
+    <!-- The Header: Snake Game -->
+    <header>
+        <p class="title">Snake Game</p>
+    </header>
+    <!-- The Main Section: Score Board and Game Board -->
+    <main>
+        <!-- The Container That Holds Both The Score And Game Container -->
+        <div class="container">
+            <!-- The Score Container Holds Two Containers: The Current Score And The Highest Score -->
+            <div class="scores-container">
+                <!-- The Current Score -->
+                <div class="score-container">
+                    <div class="score-border">
+                        <p class="score-text">Current Score</p>
+                        <p class="score-num current-score">000</p>
+                    </div>
+                </div>
+                <!-- The Highest Score -->
+                <div class="score-container">
+                    <div class="score-border">
+                        <p class="score-text">Highest Score</p>
+                        <p class="score-num highest-score">000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-container"></div>
+        </div>
+    </main>
 </body>
 </html>

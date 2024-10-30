@@ -5,18 +5,49 @@
 }
 
 body{
-    background-color: #1A4034;
+    /* background-color: #1A4034; */
+    background-color: #EEEEEE;
     font-family: "VT323", monospace;
-    font-weight: 400;
+    font-weight: 700;
     font-style: normal;
 }
 
+/* Header: Snake Game */
+/* The margin's size is relative to the font size of the title */
+.title{
+    font-size: 5rem;
+    text-align: center;
+    margin: 0.1em; 
+}
+
+/* The Main Container That Holds Both The Score And Game Container */
 .container{
     width: 95%;
-    min-height: 100vh;
+    min-height: 82vh;
     max-width: 800px;
-    background-color: pink;
+    /* background-color: pink; */
     margin: 0 auto;
+}
+
+/* The Score Board */
+.scores-container{
+    width: 90%;
+    margin: 0 auto; 
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+}
+
+.score-container{
+    width: 25%;
+    border: 0.4em solid #3B1E54;
+    background-color: #D4BEE4;
+    border-radius: 0.2em;
+    font-size: 1.6rem;
+}
+
+.score-border{
 }
 
 /* @media (max-width: 767px) {   
