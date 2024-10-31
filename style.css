@@ -5,7 +5,6 @@
 }
 
 body{
-    /* background-color: #1A4034; */
     background-color: #EEEEEE;
     font-family: "VT323", monospace;
     font-weight: 700;
@@ -47,8 +46,37 @@ body{
     font-size: 1.6rem;
 }
 
-.score-border{
+/* The Game Board Section */
+.game-container{
+    width:65%;
+    margin: 2em auto;
 }
+.game-container-border-1{
+    border: 0.6em solid #3B1E54;
+    box-shadow: inset 0 0 30px #3B1E54;;
+    border-radius: 2em;
+    
+}
+
+.game-container-border-2{
+    border: 0.6em solid #D4BEE4;
+    box-shadow: inset 0 0 30px #D4BEE4;;
+    border-radius: 2em; 
+}
+
+.game-container-border-3{
+    border: 2em solid #9B7EBD;
+    border-radius: 2em; 
+}
+
+.game-board{
+    /* width: 52.5%; */
+    display: grid;
+    grid-template-columns: repeat(20,20px);
+    grid-template-rows: repeat(20,20px);
+    background-color: #D4BEE4;
+}
+
 
 /* @media (max-width: 767px) {   
 } */
