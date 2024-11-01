@@ -14,9 +14,9 @@ body{
 /* Header: Snake Game */
 /* The margin's size is relative to the font size of the title */
 .title{
-    font-size: 5rem;
+    font-size: 3.5rem;
     text-align: center;
-    margin: 0.1em; 
+    margin: 0.4em; 
 }
 
 /* The Main Container That Holds Both The Score And Game Container */
@@ -24,13 +24,12 @@ body{
     width: 95%;
     min-height: 82vh;
     max-width: 800px;
-    /* background-color: pink; */
     margin: 0 auto;
 }
 
 /* The Score Board */
 .scores-container{
-    width: 90%;
+    width: 100%;
     margin: 0 auto; 
     display: flex;
     justify-content: space-between;
@@ -39,44 +38,139 @@ body{
 }
 
 .score-container{
-    width: 25%;
+    width: 35%;
     border: 0.4em solid #3B1E54;
     background-color: #D4BEE4;
     border-radius: 0.2em;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
 }
 
 /* The Game Board Section */
 .game-container{
-    width:65%;
+    width:100%;
     margin: 2em auto;
 }
 .game-container-border-1{
-    border: 0.6em solid #3B1E54;
+    border: 0.36em solid #3B1E54;
     box-shadow: inset 0 0 30px #3B1E54;;
     border-radius: 2em;
     
 }
 
 .game-container-border-2{
-    border: 0.6em solid #D4BEE4;
+    border: 0.36em solid #D4BEE4;
     box-shadow: inset 0 0 30px #D4BEE4;;
     border-radius: 2em; 
 }
 
 .game-container-border-3{
-    border: 2em solid #9B7EBD;
+    border: 1em solid #9B7EBD;
     border-radius: 2em; 
 }
 
 .game-board{
-    /* width: 52.5%; */
     display: grid;
-    grid-template-columns: repeat(20,20px);
-    grid-template-rows: repeat(20,20px);
+    grid-template-columns: repeat(20,15px);
+    grid-template-rows: repeat(20,15px);
     background-color: #D4BEE4;
 }
 
+/* Having multiple, specific media queries for different mobile screen sizes is needed for a game like Snake, 
+where precision is crucial. The variations in grid item sizes ensure that the game’s visual representation and collision 
+logic align perfectly, giving users a consistent experience regardless of their device. */
 
-/* @media (max-width: 767px) {   
-} */
+/* For Different Mobile Screen */
+
+/* For Pixel 7 */
+@media (max-width:414px){
+    .game-container-border-3{
+        border: 1.3em solid #9B7EBD;
+        border-radius: 1.8em; 
+    }
+    .game-board{
+        grid-template-columns: repeat(20,16.5px);
+        grid-template-rows: repeat(20,16.5px);
+    }
+}
+
+/* For Samsung Gala*/
+@media (min-width:350px) and (max-width:360px){
+    .game-container-border-3{
+        border: 1em solid #9B7EBD;
+        border-radius: 1.8em; 
+    }
+    .game-board{
+        grid-template-columns: repeat(20,14.5px);
+        grid-template-rows: repeat(20,14.5px);
+    }
+}
+/* For different iphones sizes */
+@media (min-width:370px) and (max-width:375px){
+    .game-container-border-3{
+        border: 1em solid #9B7EBD;
+        border-radius: 1.8em; 
+    }
+    .game-board{
+        grid-template-columns: repeat(20,15px);
+        grid-template-rows: repeat(20,15px);
+    }
+}
+@media (min-width:380px) and (max-width:390px){
+    .game-board{
+        grid-template-columns: repeat(20,15.5px);
+        grid-template-rows: repeat(20,15.5px);
+    }
+}
+
+@media (min-width:415px) and (max-width:430px){
+    .game-board{
+        grid-template-columns: repeat(20,17.5px);
+        grid-template-rows: repeat(20,17.5px);
+    }
+}
+
+
+
+/* For large screen */
+@media (min-width: 818px) {
+    .title{
+        font-size: 5rem;
+    }
+    
+    .scores-container{
+        width: 65%;
+    }
+    
+    .score-container{
+        width: 25%;
+        border: 0.4em solid #3B1E54;
+        background-color: #D4BEE4;
+        border-radius: 0.2em;
+        font-size: 1.6rem;
+    }
+
+    .game-container{
+        width:65%;
+    }
+
+    .game-container-border-1{
+        border: 0.6em solid #3B1E54;
+        border-radius: 2em;
+    }
+    
+    .game-container-border-2{
+        border: 0.6em solid #D4BEE4;
+        border-radius: 2em; 
+    }
+
+    .game-container-border-3{
+        border: 2em solid #9B7EBD;
+    }
+
+    .game-board{
+        grid-template-columns: repeat(20,20px);
+        grid-template-rows: repeat(20,20px);
+    }
+} 
+
+/* For Tablet */
