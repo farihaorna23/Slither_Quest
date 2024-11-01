@@ -73,6 +73,8 @@ body{
     grid-template-columns: repeat(20,15px);
     grid-template-rows: repeat(20,15px);
     background-color: #D4BEE4;
+    border-radius: 100px;;
+    margin:5px;
 }
 
 /* Having multiple, specific media queries for different mobile screen sizes is needed for a game like Snake, 
