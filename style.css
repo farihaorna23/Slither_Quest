@@ -123,12 +123,12 @@ box-shadow: inset 0 0 0 0.6em #D4BEE4;
     
 
     .game-container-border-3{
-        border: 1em solid #9B7EBD;
+        border: 0.9em solid #9B7EBD;
     }
 
     .game-board{
-        grid-template-columns: repeat(20,15px);
-        grid-template-rows: repeat(20,15px);
+        grid-template-columns: repeat(20,14px);
+        grid-template-rows: repeat(20,14px);
         margin:0.2em ;
         border-radius: 6em;
     }
