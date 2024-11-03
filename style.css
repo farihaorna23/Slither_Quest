@@ -9,11 +9,8 @@ body{
     font-family: "VT323", monospace;
     font-weight: 700;
     font-style: normal;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
+
 
 /* Header: Snake Game */
 /* The margin's size is relative to the font size of the title */
@@ -23,14 +20,28 @@ body{
     margin: 0.4em; 
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1em; */
+    max-width: 100%;
+}
+
 /* The Score Board */
 .scores-container{
+    width: 100%;
+    max-width: 501.59px;
+    min-height: 78.39px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 1em;
+    text-align: center;
 }
 
 .score-container{
+    width:38%;
     border: 0.5em solid #3B1E54;
     border-radius: 0.5em;
 }
@@ -44,6 +55,15 @@ body{
 
 
 /* The Game Board */
+.game-container{
+    width: 100%;
+    max-width: 501.59px;
+    min-height:501.59px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .game-container-border-1{
 border: 0.6em solid #3B1E54;
 border-radius: 1.8em;
@@ -70,3 +90,48 @@ box-shadow: inset 0 0 0 0.6em #D4BEE4;
     margin:0.3em ;
     border-radius: 7em;
 }
+
+/* For Mobile Screen */
+@media (max-width: 576px){
+    .title{
+        font-size: 3.8rem;
+        text-align: center;
+        margin: 0.2em; 
+    }
+
+    .scores-container{
+        padding: 0.3em;
+        margin-bottom: 0;
+    }
+
+    .score-container{
+        width:24%;
+    }
+
+    .score-border{
+        font-size: 1.2rem;
+        padding: 0.1em;
+    }
+
+    .game-container-border-1{
+        border: 0.5em solid #3B1E54;
+    }
+        
+    .game-container-border-2{
+        border: 0.4em solid #D4BEE4;
+    }
+    
+
+    .game-container-border-3{
+        border: 1em solid #9B7EBD;
+    }
+
+    .game-board{
+        grid-template-columns: repeat(20,15px);
+        grid-template-rows: repeat(20,15px);
+        margin:0.2em ;
+        border-radius: 6em;
+    }
+
+}
+

@@ -4,4 +4,4 @@
 // }
 
 // window.addEventListener('resize', updateSize);
-//updateSize(); // Call once to set initial size
+// updateSize(); // Call once to set initial size
