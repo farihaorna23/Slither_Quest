@@ -8,8 +8,9 @@ const gameDisplay = document.querySelector('.game-display')
 const snakePositions = [{x:10,y:10}] //the snake position in the begining of the game is the center
 let snakeDirection =  "ArrowUp" //the snake will default by moving to the top
 let gameStarted = false //keeps track of whether the game has started or not
-const foodPosition = generateFood() //will hold the position of the food on the gameboard
-const user_current_score = 0 //keeps track of user's score
+let foodPosition = generateFood() //will hold the position of the food on the gameboard
+let user_current_score = 0 //keeps track of user's score
+let gameTimeInterval = 200
 
 //This function would start the game and repeatdely call a few functions on repeat to keep the game responive and ongoing
 const startGame = () => {
@@ -23,8 +24,10 @@ const startGame = () => {
         createFood()
         //make the snake move according to the user input
         move(snakeDirection)
+        //update current score board
+        updateCurrentScore()
         }
-    },200)
+    },gameTimeInterval)
 }
 
 
@@ -60,7 +63,27 @@ const createFood = () => {
     gameBoard.appendChild(food)
 }
 
-//This function would update the current score based on the speed of the snake
+//This function would increase the speed of the snake's movement by decrementing the game loop's time interval
+//The rate at how much time interval would decrease depends on how fast the snake's speed is
+// The rate of decrement would get lower as the speed of the snake increases
+//The higher the speed, the more points the user will earn
+const updateSnakeSpeed = () => {
+    if (gameTimeInterval < 100) {
+        gameTimeInterval -= 1
+        user_current_score += 15
+    }else if (gameTimeInterval < 150){
+        gameTimeInterval -= 3
+        user_current_score += 10
+    }else{
+        gameTimeInterval -= 5
+        user_current_score += 5
+    }
+
+console.log(user_current_score)
+console.log(gameTimeInterval)
+}
+
+//This function would update the current score on the score board
 const updateCurrentScore = () => {
     let user_score = String(user_current_score)
     currentScore.textContent = user_score.padStart(3,"0")
@@ -89,10 +112,18 @@ const move = (direction) => {
 
     //it would add the new head to the snake aka SnakePositions array
     snakePositions.unshift(head)
-    
-    //if user hasn't eaten any food or collided with itself or the border, 
-    //and pop the previous head to give the sense of the snake moving
-    snakePositions.pop()
+
+    //if the user eats the food, we don't want to pop off their tail
+    if ((head.x == foodPosition.x) && (head.y == foodPosition.y)){
+        //generate new food position
+        foodPosition = generateFood() 
+        //update the snake's speed
+        updateSnakeSpeed()
+    }else{
+        //if user hasn't eaten any food or collided with itself or the border, 
+        //and pop the previous head to give the sense of the snake moving
+        snakePositions.pop()
+    }
 }
 
 const userInputHandler = (e) => {
