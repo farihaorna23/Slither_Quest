@@ -1,14 +1,31 @@
 // DOM Elements
 const gameBoard = document.querySelector('.game-board')
 const currentScore = document.querySelector('.current-score')
+const gameDisplay = document.querySelector('.game-display')
 
 
 //Variables
 const snakePositions = [{x:10,y:10}] //the snake position in the begining of the game is the center
-const snakeDirection =  "ArrowUp" //the snake will default by moving to the top
-const gameStarted = false //keeps track of whether the game has started or not
+let snakeDirection =  "ArrowUp" //the snake will default by moving to the top
+let gameStarted = false //keeps track of whether the game has started or not
 const foodPosition = generateFood() //will hold the position of the food on the gameboard
 const user_current_score = 0 //keeps track of user's score
+
+//This function would start the game and repeatdely call a few functions on repeat to keep the game responive and ongoing
+const startGame = () => {
+    setInterval(()=> {
+        if(gameStarted){
+        //clear the gameboard
+        gameBoard.innerHTML = ""
+        //create snake segments
+        createSnake()
+        //create food
+        createFood()
+        //make the snake move according to the user input
+        move(snakeDirection)
+        }
+    },200)
+}
 
 
 //This function will create each snake segment based on the snakePosition array and set its position
@@ -57,10 +74,10 @@ const move = (direction) => {
     //based on the user's input, the switch case would change the position of the new head of the snake
     switch(direction){
         case "ArrowUp":
-            head.x += 1
+            head.x -= 1
             break
         case "ArrowDown":
-            head.x -= 1
+            head.x += 1
             break
         case "ArrowLeft":
             head.y -= 1
@@ -85,6 +102,7 @@ const userInputHandler = (e) => {
     //if any of the direction keys are pressed, we would call the move function
     switch(key){
         case "Space":
+            gameDisplay.style.display = "none";
             gameStarted = true
             startGame()
             break
