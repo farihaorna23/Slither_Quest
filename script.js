@@ -109,11 +109,11 @@ const updateCurrentScore = () => {
 
 //This function would update the highest score on the score board
 function updateHighestScore() {
-    let highScore = String(user_highest_score)
     //if the current score is higher than the highest score recorded, then current scores becomes highest score
     if (user_current_score > user_highest_score ){
         user_highest_score = user_current_score;
     }
+    let highScore = String(user_highest_score)
     highestScore.textContent = highScore.padStart(3,0)
 }
 
