@@ -11,10 +11,10 @@ let gameStarted = false //keeps track of whether the game has started or not
 let foodPosition = generateFood() //will hold the position of the food on the gameboard
 let user_current_score = 0 //keeps track of user's score
 let gameTimeInterval = 200
-
+let gameLoop = null
 //This function would start the game and repeatdely call a few functions on repeat to keep the game responive and ongoing
 const startGame = () => {
-    setInterval(()=> {
+    gameLoop = setInterval(()=> {
         if(gameStarted){
         //clear the gameboard
         gameBoard.innerHTML = ""
@@ -28,6 +28,16 @@ const startGame = () => {
         updateCurrentScore()
         }
     },gameTimeInterval)
+}
+
+//This function would end the game by stopping the gaming loop
+const endGame = () => {
+    //stop the gaming loop
+    clearInterval(gameLoop)
+    console.log("Game Ended")
+    //clear the gameboard inner html
+    //update highest score
+    //bring back the snake logo and text
 }
 
 
@@ -78,15 +88,28 @@ const updateSnakeSpeed = () => {
         gameTimeInterval -= 5
         user_current_score += 5
     }
-
-console.log(user_current_score)
-console.log(gameTimeInterval)
 }
 
 //This function would update the current score on the score board
 const updateCurrentScore = () => {
     let user_score = String(user_current_score)
     currentScore.textContent = user_score.padStart(3,"0")
+}
+
+//This function checks for border collision and self collision
+const  checkCollison = (head) => {
+    //border collision
+    if((head.x < 1) || (head.x > 20) || (head.y < 1) || (head.y > 20)){
+        return true
+    }else{
+        //self collision
+        for (let i=1; i<snakePositions.length; i++){
+            if((head.x == snakePositions[i].x) && (head.y == snakePositions[i].y)){
+                return true
+            }
+        }
+    }
+    return false
 }
 
 //the move function would move the snake around the gameboard based on the user's input
@@ -113,12 +136,20 @@ const move = (direction) => {
     //it would add the new head to the snake aka SnakePositions array
     snakePositions.unshift(head)
 
+    //call the collision function to check if snake's head has collided
+    let isCollision = checkCollison(head)
+
     //if the user eats the food, we don't want to pop off their tail
     if ((head.x == foodPosition.x) && (head.y == foodPosition.y)){
         //generate new food position
         foodPosition = generateFood() 
         //update the snake's speed
         updateSnakeSpeed()
+     
+    //if the user's collided with the gameboard's border or collided with itself   
+    }else if (isCollision){
+        //we want to end the game
+        endGame()
     }else{
         //if user hasn't eaten any food or collided with itself or the border, 
         //and pop the previous head to give the sense of the snake moving
