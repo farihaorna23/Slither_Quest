@@ -3,6 +3,7 @@ const gameBoard = document.querySelector('.game-board')
 const currentScore = document.querySelector('.current-score')
 const gameDisplay = document.querySelector('.game-display')
 const highestScore = document.querySelector('.highest-score')
+const textInstruction = document.querySelector('.text-instruction')
 
 //Variables
 let snakePositions = [{x:10,y:10}] //the snake position in the begining of the game is the center
@@ -44,11 +45,16 @@ const endGame = () => {
     //reset the variables
     gameStarted = false
     user_current_score = 0
+    gameTimeInterval = 200
     snakeDirection =  "ArrowUp" 
     snakePositions = [{x:10,y:10}]
     foodPosition = generateFood() 
     //bring back the snake logo and text
     gameDisplay.style.display = "flex"
+    gameDisplay.style.overflow = "auto"
+    //change the text instruction
+    textInstruction.style.fontSize = "1.5em"
+    textInstruction.textContent = "Game Over! Press Space Bar To Play Again!"
 }
 
 
