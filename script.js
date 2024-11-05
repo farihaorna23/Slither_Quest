@@ -2,16 +2,18 @@
 const gameBoard = document.querySelector('.game-board')
 const currentScore = document.querySelector('.current-score')
 const gameDisplay = document.querySelector('.game-display')
-
+const highestScore = document.querySelector('.highest-score')
 
 //Variables
-const snakePositions = [{x:10,y:10}] //the snake position in the begining of the game is the center
+let snakePositions = [{x:10,y:10}] //the snake position in the begining of the game is the center
 let snakeDirection =  "ArrowUp" //the snake will default by moving to the top
 let gameStarted = false //keeps track of whether the game has started or not
 let foodPosition = generateFood() //will hold the position of the food on the gameboard
 let user_current_score = 0 //keeps track of user's score
-let gameTimeInterval = 200
-let gameLoop = null
+let user_highest_score = 0 //keeps track of user's highest score
+let gameTimeInterval = 200 //the game delay interval for the gaming loop
+let gameLoop = null //will store the interval id for the set interval in startGame
+
 //This function would start the game and repeatdely call a few functions on repeat to keep the game responive and ongoing
 const startGame = () => {
     gameLoop = setInterval(()=> {
@@ -35,9 +37,18 @@ const endGame = () => {
     //stop the gaming loop
     clearInterval(gameLoop)
     console.log("Game Ended")
-    //clear the gameboard inner html
     //update highest score
+    updateHighestScore()
+    //clear the gameboard inner html
+    gameBoard.innerHTML = ""
+    //reset the variables
+    gameStarted = false
+    user_current_score = 0
+    snakeDirection =  "ArrowUp" 
+    snakePositions = [{x:10,y:10}]
+    foodPosition = generateFood() 
     //bring back the snake logo and text
+    gameDisplay.style.display = "flex"
 }
 
 
@@ -94,6 +105,16 @@ const updateSnakeSpeed = () => {
 const updateCurrentScore = () => {
     let user_score = String(user_current_score)
     currentScore.textContent = user_score.padStart(3,"0")
+}
+
+//This function would update the highest score on the score board
+function updateHighestScore() {
+    let highScore = String(user_highest_score)
+    //if the current score is higher than the highest score recorded, then current scores becomes highest score
+    if (user_current_score > user_highest_score ){
+        user_highest_score = user_current_score;
+    }
+    highestScore.textContent = highScore.padStart(3,0)
 }
 
 //This function checks for border collision and self collision
